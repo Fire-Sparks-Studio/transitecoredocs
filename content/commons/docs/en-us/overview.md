@@ -69,7 +69,7 @@ LuaTC allows addon developers to create new vehicles, railway systems and gamepl
 
 ---
 
-# Architecture
+## Architecture
 
 TransitCore is divided into multiple independent systems.
 
@@ -93,7 +93,7 @@ Every system communicates through a stable public API.
 
 ---
 
-# What is LuaTC?
+## What is LuaTC?
 
 LuaTC is TransitCore's scripting language.
 
@@ -112,7 +112,7 @@ LuaTC focuses on describing behaviour while the Java engine handles rendering, n
 
 ---
 
-# Addons
+## Addons
 
 Everything in TransitCore is distributed as an addon.
 
@@ -133,7 +133,7 @@ A faulty addon will never prevent TransitCore or other addons from loading.
 
 ---
 
-# Why TransitCore?
+## Why TransitCore?
 
 TransitCore has been designed to solve many limitations found in traditional railway mods.
 
@@ -152,23 +152,23 @@ It provides:
 
 ---
 
-# Documentation
+## Documentation
 
 The documentation is organized into several sections.
 
-## Getting Started
+### Getting Started
 
 Learn how to install TransitCore, create your first addon and understand the basics of LuaTC.
 
-## Guides
+### Guides
 
 Step-by-step tutorials covering common development tasks.
 
-## API Reference
+### API Reference
 
 Complete reference for every LuaTC class, service, method and event.
 
-## Examples
+### Examples
 
 Ready-to-use sample addons demonstrating best practices.
 
