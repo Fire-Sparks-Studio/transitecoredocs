@@ -1,0 +1,26 @@
+navigation:
+
+  - heading: Vehicles
+
+  - title: Creating a Vehicle
+    path: /guides/vehicles/create
+
+  - title: Doors
+    path: /guides/vehicles/doors
+
+  - title: Bogies
+    path: /guides/vehicles/bogies
+
+  - title: Physics
+    path: /guides/vehicles/physics
+
+  - heading: Railway
+
+  - title: Tracks
+    path: /guides/tracks
+
+  - title: Switches
+    path: /guides/switches
+
+  - title: Speed Limits
+    path: /guides/speed-limits

@@ -1,0 +1,15 @@
+navigation:
+
+  - file: getting-started.yml
+
+  - file: guides.yml
+
+  - file: luatc.yml
+
+  - file: api.yml
+
+  - file: examples.yml
+
+  - file: tutorials.yml
+
+  - file: release-notes.yml

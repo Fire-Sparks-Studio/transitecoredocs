@@ -1,0 +1,23 @@
+navigation:
+
+  - heading: Services
+
+  - title: tc.vehicle
+    path: /api/services/vehicle
+
+  - title: tc.track
+    path: /api/services/track
+
+  - title: tc.signal
+    path: /api/services/signal
+
+  - heading: Classes
+
+  - title: TCVehicle
+    path: /api/classes/tcvehicle
+
+  - title: TCNode
+    path: /api/classes/tcnode
+
+  - title: TCSignal
+    path: /api/classes/tcsignal

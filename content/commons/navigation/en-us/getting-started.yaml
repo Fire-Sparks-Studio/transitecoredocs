@@ -1,0 +1,18 @@
+navigation:
+
+  - heading: Getting Started
+
+  - title: Overview
+    path: /overview
+
+  - title: Installation
+    path: /getting-started/installation
+
+  - title: Project Structure
+    path: /getting-started/project-structure
+
+  - title: First Addon
+    path: /getting-started/first-addon
+
+  - title: LuaTC Basics
+    path: /getting-started/luatc-basics

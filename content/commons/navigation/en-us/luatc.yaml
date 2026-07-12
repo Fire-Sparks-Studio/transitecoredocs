@@ -1,0 +1,21 @@
+navigation:
+
+  - heading: LuaTC
+
+  - title: Overview
+    path: /luatc
+
+  - title: Services
+    path: /luatc/services
+
+  - title: Nodes
+    path: /luatc/nodes
+
+  - title: Components
+    path: /luatc/components
+
+  - title: Events
+    path: /luatc/events
+
+  - title: Modules
+    path: /luatc/modules
