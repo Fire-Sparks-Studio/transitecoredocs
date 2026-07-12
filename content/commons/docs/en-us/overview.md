@@ -101,7 +101,7 @@ It is based on Lua and extends it with TransitCore's API.
 
 Instead of interacting with Minecraft internals, developers work exclusively with TransitCore objects.
 
-```luatc
+```luatc title="Train creation"
 local train = tc.vehicle.create(tc.VehicleType.TRAIN)
 
 train:setName("TGV Duplex")
