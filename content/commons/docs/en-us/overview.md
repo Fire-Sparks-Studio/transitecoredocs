@@ -23,7 +23,7 @@ This architecture allows developers to create completely independent addons with
 
 TransitCore is built around four core principles.
 
-### 🚆 Realism
+### Realism
 
 TransitCore aims to provide the most realistic railway simulation possible while remaining performant inside Minecraft.
 
@@ -39,7 +39,7 @@ The framework includes systems for:
 
 ---
 
-### 🧩 Modularity
+### Modularity
 
 Everything is designed to be modular.
 
@@ -51,7 +51,7 @@ Developers are free to create their own content without changing the engine.
 
 ---
 
-### ⚡ Performance
+### Performance
 
 Performance is a priority.
 
@@ -61,7 +61,7 @@ The engine uses optimized rendering, caching and event-driven systems whenever p
 
 ---
 
-### 🛠 Extensibility
+### Extensibility
 
 TransitCore exposes a complete scripting API called **LuaTC**.
 
