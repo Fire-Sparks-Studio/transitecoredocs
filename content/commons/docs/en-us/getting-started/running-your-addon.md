@@ -1,202 +1,171 @@
 ---
-title: Running Your Addon
-description: Learn how TransitCore discovers, loads and executes addons during startup.
+title: Run your Addon
+description: Discover how to load, test and update your Addon during development.
 ---
 
-# Running Your Addon
+# Run your Addon
 
-Once your addon has been created, TransitCore automatically detects and loads it during startup.
+Once your Addon is created, you can launch it directly with TransitCore to verify its operation.
 
-This page explains how the loading process works, what happens when an addon starts and how to diagnose common loading issues.
+TransitCore automatically detects all Addons present in the `TC_Addons` folder and loads them at game startup.
 
 <Alert severity="info">
 
-TransitCore automatically scans every addon located inside the `TC_Addons` directory. No additional configuration is required.
+Each time Minecraft is launched, TransitCore automatically analyzes the `TC_Addons` folder and loads all Addons whose manifest is valid.
 
 </Alert>
 
-## Startup sequence
+## Verify the project structure
 
-Each time Minecraft starts, TransitCore performs the following steps.
+Before launching Minecraft, make sure your project is correctly organized.
 
-1. Initialize the TransitCore framework.
-2. Scan the `TC_Addons` directory.
-3. Detect every available addon.
-4. Read each `addon.yaml` manifest.
-5. Validate addon information.
-6. Resolve dependencies.
-7. Load LuaTC scripts.
-8. Register resources.
-9. Enable the addon.
+```text title="Example structure"
 
-If every step completes successfully, the addon becomes available immediately.
+MyAddon/
+├── addon.yaml
+├── scripts/
+│   └── main.luatc
+├── models/
+├── textures/
+└── sounds/
 
-## Addon discovery
-
-TransitCore searches every folder located inside the `TC_Addons` directory.
-
-```text title="Addon discovery"
-.minecraft/
-└── TC_Addons/
-    ├── MyFirstAddon/
-    ├── FrenchSignals/
-    ├── JapaneseRollingStock/
-    └── ModernStations/
 ```
 
-Each folder is treated as a potential addon.
+The `addon.yaml` file as well as the `scripts` folder are essential for loading your Addon.
 
-TransitCore ignores directories that do not contain a valid `addon.yaml`.
+## Launch Minecraft
 
-## Manifest validation
+Launch Minecraft with TransitCore installed.
 
-Before loading an addon, TransitCore validates its manifest.
+During startup, TransitCore performs several checks:
 
-Validation includes:
+- Searching for Addons.
+- Reading manifests.
+- Checking dependencies.
+- Loading resources.
+- Initializing LuaTC scripts.
 
-- Addon identifier
-- Version
-- Entry point
-- Dependencies
-- Supported TransitCore version
+If no error is detected, your Addon is loaded automatically.
 
-If validation fails, the addon is skipped.
+```text title="Console"
 
-```text title="Console output"
-[TransitCore] Loading addon "French Signals"
-
-[TransitCore] Invalid addon manifest.
-
-[TransitCore] Addon disabled.
-```
-
-## Loading LuaTC
-
-Once the manifest has been validated, TransitCore executes the entry script.
-
-```yaml title="addon.yaml"
-entry: scripts/main.luatc
-```
-
-The specified script becomes the starting point of the addon.
-
-Additional scripts may then be loaded by the addon itself.
-
-## Resource registration
-
-During startup, TransitCore registers every supported resource contained in the addon.
-
-This may include:
-
-- Vehicles
-- Tracks
-- Signals
-- Models
-- Textures
-- Animations
-- Sounds
-- User interfaces
-- Localization files
-
-Resources become available once the addon has finished loading.
-
-## Console output
-
-A successful startup may produce output similar to the following.
-
-```text title="Console output"
-[TransitCore] Initializing...
-
-[TransitCore] Discovering addons...
-
-[TransitCore] Loading "My First Addon"
-
-[TransitCore] Registering resources...
-
+[TransitCore] Loading addon: MyAddon
+[TransitCore] Initialising LuaTC runtime...
 [TransitCore] Addon loaded successfully.
+
 ```
 
-## Loading errors
+## Verify that the Addon is loaded
 
-If an error occurs while loading an addon, TransitCore reports it in the logs.
+After loading, you can consult the console to verify that TransitCore has detected your Addon.
 
-```text title="Console output"
-[TransitCore] Loading "My First Addon"
+For example:
 
-[TransitCore] LuaTC Runtime Error
+```text title="Console"
 
-[TransitCore] Addon disabled.
+[TransitCore] Loading addon: Metro Pack
+[TransitCore] Registering resources...
+[TransitCore] Loading scripts...
+[TransitCore] Ready.
+
 ```
 
-<Alert severity="warning" title="Addon Isolation">
+If your Addon does not appear in the logs, check your project structure as well as the content of the `addon.yaml` file.
 
-A faulty addon never prevents TransitCore from starting.
+## Test your scripts
 
-Only the addon that caused the error is disabled. Every remaining addon continues loading normally.
+You can display information in the console using the `print()` function.
 
-</Alert>
+```luatc title="main.luatc"
 
-## Reading the logs
+print("TransitCore is ready!")
 
-TransitCore generates detailed log files during startup.
+```
 
-These logs contain useful information about:
+This method is very practical to quickly verify that a script is executed.
 
-- Loaded addons
-- Validation errors
-- LuaTC exceptions
-- Missing resources
-- Dependency issues
+## Modify an Addon
 
-Log files are stored inside:
+During development, you will regularly modify your scripts, models and resources.
 
-```text title="Log directory"
+After each modification:
+
+1. Save your files.
+2. Relaunch Minecraft.
+3. Check the logs.
+4. Test the new features.
+
+This method allows quickly detecting errors.
+
+## Check the logs
+
+TransitCore records all important information in its logs.
+
+```text title="Logs folder"
+
 .minecraft/
 └── TC_Logs/
+
 ```
 
-Whenever an addon fails to load, checking the logs should always be the first troubleshooting step.
+The logs notably contain:
 
-## Reloading addons
+- Loaded Addons.
+- LuaTC errors.
+- Warnings.
+- Debug information.
+- Framework messages.
 
-Depending on the current development tools and configuration, TransitCore may support reloading addons without restarting Minecraft.
+<Alert severity="success">
 
-When available, reloading allows developers to quickly test LuaTC scripts and configuration changes.
-
-<Alert severity="info">
-
-Support for live reloading depends on the development environment and the type of resources being modified.
-
-Some resources may still require restarting Minecraft.
+Consult the logs regularly during development. They allow quickly identifying the origin of most problems.
 
 </Alert>
 
-## Troubleshooting
+## Update an Addon
 
-If your addon does not load correctly, verify the following:
+When you modify your Addon, remember to also update its version number in the `addon.yaml` file.
 
-- The addon is located inside `TC_Addons`.
-- The `addon.yaml` file exists.
-- The manifest is valid.
-- The entry script exists.
-- All dependencies are installed.
-- No LuaTC errors are present.
-- TransitCore and the addon are compatible.
+```yaml title="addon.yaml"
 
-Most loading issues can be resolved by checking these items.
+version: 1.1.0
+
+```
+
+Using consistent versioning facilitates tracking changes and releasing new versions.
+
+## Test progressively
+
+It is recommended to add features one by one.
+
+After each important change:
+
+- Launch Minecraft.
+- Check the logs.
+- Test only the feature concerned.
+- Immediately fix any errors.
+
+This approach makes development simpler and avoids accumulating several problems that are difficult to identify.
 
 ## Best practices
 
-To simplify development:
+During development:
 
-- Keep startup scripts small.
-- Register resources in dedicated modules.
-- Read the logs after every startup.
-- Test changes frequently.
-- Fix warnings before they become errors.
+- Test your Addon frequently.
+- Fix errors as soon as they appear.
+- Regularly update the version number.
+- Consult the logs after each launch.
+- Add new features progressively.
+- Maintain a clear project structure.
 
-Following these practices makes addons easier to debug and maintain.
+<Alert severity="warning">
 
-## Next Steps
+Avoid developing several important features before testing them. Regular testing makes it much easier to identify the source of a problem.
 
-Continue with **Debugging** to learn how to identify, understand and resolve errors while developing TransitCore addons.
+</Alert>
+
+## Next step
+
+You now know how to load and test an Addon with TransitCore.
+
+Continue with **Debugging** to learn how to analyze errors, interpret logs and resolve the most common problems.

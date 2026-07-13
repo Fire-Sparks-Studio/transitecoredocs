@@ -1,181 +1,229 @@
 ---
-title: LuaTC Basics
-description: Learn the fundamentals of LuaTC and understand how scripts interact with TransitCore.
+title: The basics of LuaTC
+description: Discover the basics of LuaTC and learn to write your first TransitCore scripts.
 ---
 
-# LuaTC Basics
+# The basics of LuaTC
 
-LuaTC is the official scripting language of TransitCore.
+**LuaTC** is the official scripting language of TransitCore.
 
-It is based on Lua and extends it with APIs specifically designed for railway simulation. Through LuaTC, addons can interact with every major system provided by TransitCore, including vehicles, tracks, signals, animations and user interfaces.
+Based on Lua, it has been extended to interact with all the systems of the framework, such as vehicles, signals, tracks, components or the world.
 
-Unlike Java, LuaTC is designed to be simple to learn while remaining powerful enough to create complete addons.
+Most Addons can be developed entirely in LuaTC, without having to write a single line of Java.
 
 <Alert severity="info">
 
-LuaTC is fully compatible with the Lua language. TransitCore extends it by providing additional APIs, services and annotations specifically designed for addon development.
+LuaTC is specially designed for developing TransitCore Addons. It offers APIs dedicated to railway simulation while maintaining the simplicity of Lua.
 
 </Alert>
 
 ## Your first script
 
-A LuaTC script is simply a text file with the `.luatc` extension.
+The entry point of an Addon is generally the `main.luatc` file.
+
+You can write your first script there.
 
 ```luatc title="main.luatc"
-tc.logger:info("Hello TransitCore!")
+print("Hello TransitCore!")
 ```
 
-When the addon is loaded, the message is written to the TransitCore log.
-
-## The `tc` namespace
-
-Every LuaTC script has access to the global `tc` namespace.
-
-This namespace provides access to every service exposed by TransitCore.
-
-For example:
-
-```luatc title="Getting a service"
-local vehicle = tc.vehicle
-
-local signal = tc.signal
-
-local track = tc.track
-```
-
-Each service exposes functions related to a specific part of the framework.
+When the Addon is loaded, this message will be displayed in the console.
 
 ## Variables
 
-Variables are declared using the `local` keyword.
+Variables allow storing information to reuse it later.
 
 ```luatc title="Variables"
-local speed = 160
-
-local name = "TGV Duplex"
-
-local enabled = true
+local trainName = "TGV Duplex"
+local maxSpeed = 320
+local isElectric = true
 ```
 
-Whenever possible, prefer local variables instead of global variables.
+The `local` keyword creates a variable accessible only in the current script.
 
-<Alert severity="success">
+It is recommended to use local variables whenever possible.
 
-Using local variables improves readability and prevents accidental conflicts between scripts.
+## Data types
 
-</Alert>
+LuaTC reuses the main Lua data types.
 
-## Calling methods
+| Type | Description |
+|------|-------------|
+| `string` | Text. |
+| `number` | Numeric value. |
+| `boolean` | True or false value. |
+| `table` | Collection of data. |
+| `nil` | Absent value. |
 
-LuaTC primarily uses methods to interact with objects.
+Example:
 
-```luatc title="Calling a method"
-train:setName("TGV Duplex")
-
-train:setMaximumSpeed(320)
+```luatc title="Types"
+local line = "Line A"
+local speed = 80
+local powered = true
 ```
-
-Methods are called using the `:` operator.
-
-This automatically passes the object as the first argument.
 
 ## Functions
 
-Functions group reusable logic.
+Functions allow grouping reusable code.
 
-```luatc title="Functions"
-local function spawnTrain()
+```luatc title="Function"
+local function openDoors()
 
-    tc.logger:info("Train spawned.")
+    print("Opening doors")
 
 end
 
-spawnTrain()
+openDoors()
 ```
 
-Functions make scripts easier to read and maintain.
+Functions can also receive parameters.
+
+```luatc title="Parameters"
+local function setSpeed(speed)
+
+    print(speed)
+
+end
+
+setSpeed(120)
+```
+
+## Conditions
+
+Conditions allow executing code only when a condition is met.
+
+```luatc title="Condition"
+local speed = 120
+
+if speed > 100 then
+
+    print("High speed")
+
+end
+```
+
+You can also use `elseif` and `else`.
+
+## Loops
+
+Loops allow repeating an action.
+
+```luatc title="Loop"
+for i = 1, 5 do
+
+    print(i)
+
+end
+```
+
+There are also `while` and `repeat` loops.
+
+## Tables
+
+Tables are used to store multiple values.
+
+```luatc title="Table"
+local stations = {
+
+    "Central Station",
+    "University",
+    "Airport"
+
+}
+```
+
+You can access a value via its index.
+
+```luatc title="Accessing a value"
+print(stations[1])
+```
 
 ## Comments
 
-Comments are ignored by TransitCore.
+Comments serve to document your code.
 
-They are useful for documenting your code.
+They are ignored during execution.
 
 ```luatc title="Comments"
--- This is a comment.
+-- This is a comment
 
-local speed = 160
+--[[
+
+This is
+a multiline
+comment.
+
+]]
 ```
+
+Comment only when it adds real value to understanding the code.
+
+## Using the TransitCore API
+
+LuaTC allows interacting directly with TransitCore.
+
+For example, to create a vehicle:
+
+```text title="Create a vehicle"
+local vehicle = tc.vehicle.create(tc.VehicleType.TRAIN)
+
+vehicle:setName("TGV Duplex")
+vehicle:setMaximumSpeed(320)
+```
+
+The different services available are documented in the **API Reference** section.
 
 ## Organizing your code
 
-As projects grow, scripts should be split into multiple files.
+As your Addon evolves, avoid writing everything in `main.luatc`.
 
-```text title="Example"
+Prefer distributing your code across several modules.
+
+```text title="Recommended organization"
 scripts/
 ├── main.luatc
 ├── vehicles/
-├── signals/
+├── railway/
+├── stations/
 ├── ui/
 └── shared/
 ```
 
-Avoid placing every function inside a single file.
+A clear organization facilitates project maintenance and encourages code reuse.
 
-## TransitCore services
+<Alert severity="success">
 
-Most LuaTC scripts interact with one or more services.
-
-Some of the most commonly used services include:
-
-| Service | Description |
-|---------|-------------|
-| `tc.vehicle` | Creates and manages vehicles. |
-| `tc.track` | Creates and edits railway tracks. |
-| `tc.signal` | Manages railway signaling. |
-| `tc.physics` | Provides access to the physics engine. |
-| `tc.animation` | Controls animations. |
-| `tc.audio` | Plays and manages sounds. |
-| `tc.world` | Interacts with the Minecraft world. |
-| `tc.player` | Interacts with players. |
-
-Each service is documented in the **LuaTC** and **API Reference** sections.
-
-## Error handling
-
-If a LuaTC script throws an error, TransitCore reports it in the logs.
-
-The framework automatically disables the faulty addon without affecting the remaining addons.
-
-```text title="Example"
-[TransitCore] Loading addon "Example"
-
-[TransitCore] LuaTC Runtime Error
-
-[TransitCore] Addon disabled.
-```
-
-<Alert severity="warning">
-
-Errors inside one addon never prevent TransitCore from loading the framework or other addons.
+A file should ideally have a single responsibility. Prefer several small modules rather than a single script of several hundred lines.
 
 </Alert>
 
+## Errors
+
+An error in a script can prevent certain features from working correctly.
+
+TransitCore automatically displays encountered errors in the logs.
+
+```text title="Example"
+[LuaTC] Runtime Error
+Attempt to call nil value.
+```
+
+Always consult the logs before modifying your code.
+
 ## Best practices
 
-When writing LuaTC scripts:
+When developing in LuaTC:
 
-- Keep functions short and focused.
-- Prefer local variables.
-- Organize scripts by feature.
-- Write descriptive names.
-- Comment complex logic when necessary.
-- Split large projects into multiple modules.
+- use local variables;
+- give explicit names to your variables and functions;
+- split your code into several modules;
+- avoid code duplication;
+- test your Addon regularly;
+- comment only when useful.
 
-Following these practices will make your addon easier to maintain as it grows.
+## Next step
 
-## What's next?
+You now know the basics of LuaTC and can start developing your own features.
 
-You now understand the basic structure of a LuaTC script.
-
-Continue with **Running Your Addon** to learn how TransitCore loads, executes and reloads LuaTC addons during development.
+Continue with **Run your Addon** to learn how to launch, test and update your Addons during development.

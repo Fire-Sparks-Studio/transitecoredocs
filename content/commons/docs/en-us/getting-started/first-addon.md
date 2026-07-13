@@ -1,173 +1,177 @@
 ---
-title: Your First Addon
-description: Create your first TransitCore addon and learn how addons are discovered and loaded.
+title: Your first Addon
+description: Create your first TransitCore Addon and discover how it is loaded by the framework.
 ---
 
-# Your First Addon
+# Your first Addon
 
-In this guide, you will create your first TransitCore addon.
+It is now time to create your first TransitCore Addon.
 
-The objective is not to create a complete train or railway system, but to understand how an addon is structured and how TransitCore loads it.
+In this guide, you will create a minimal Addon capable of being detected and loaded automatically by TransitCore.
 
-By the end of this guide, you will have:
-
-- Created your first addon.
-- Learned the required project structure.
-- Written your first LuaTC script.
-- Successfully loaded your addon in TransitCore.
+At the end of this page, you will have a functional project structure on which you can build your future developments.
 
 <Alert severity="info">
 
-Every TransitCore addon is loaded independently. If one addon fails to load, TransitCore continues loading every other addon.
+An Addon is an independent extension that allows adding new features to TransitCore, such as vehicles, infrastructure, scripts or user interfaces.
 
 </Alert>
 
-## Creating the addon directory
+## Create the Addon folder
 
-TransitCore automatically searches for addons inside the `TC_Addons` directory.
+Start by opening the `TC_Addons` folder created by TransitCore.
 
-Create a new folder.
+Then create a new folder that will contain your Addon.
 
-```text title="Addon directory"
-.minecraft/
-└── TC_Addons/
-    └── MyFirstAddon/
+```text title="Initial structure"
+
+TC_Addons/
+└── MyFirstAddon/
+
 ```
 
-The folder name can be anything, but it should match the name of your project.
+The folder name is free, but it is recommended to use a simple name, without spaces or special characters.
 
-## Creating the manifest
+## Create the manifest
 
-Every addon requires a manifest file named `addon.yaml`.
+Each Addon must mandatory contain an `addon.yaml` file.
 
-Create the following file.
+This file allows TransitCore to identify the Addon and retrieve its main information.
+
+Create the following file:
 
 ```yaml title="addon.yaml"
+
 id: my_first_addon
 name: My First Addon
 version: 1.0.0
+author: YourName
+description: My first TransitCore Addon.
 
-author: Your Name
-
-description: My first TransitCore addon.
-
-entry: scripts/main.luatc
 ```
-
-The manifest tells TransitCore how to identify and load your addon.
-
-Without this file, the directory is ignored.
-
-## Creating the project structure
-
-Create the following directories.
-
-```text title="Project structure"
-MyFirstAddon/
-├── addon.yaml
-├── scripts/
-├── models/
-├── textures/
-├── sounds/
-└── lang/
-```
-
-Most of these folders are empty for now, but they will be used later as your addon grows.
-
-## Creating your first LuaTC script
-
-Inside the `scripts` directory, create a file named `main.luatc`.
-
-```luatc title="scripts/main.luatc"
-tc.logger:info("Hello TransitCore!")
-```
-
-This script writes a message to the TransitCore log during startup.
 
 <Alert severity="success">
 
-Congratulations! You have written your first LuaTC script.
+The `addon.yaml` file is mandatory. Without it, TransitCore will completely ignore your Addon during startup.
 
 </Alert>
 
-## Loading the addon
+## Add a scripts folder
 
-Start Minecraft with TransitCore installed.
+Now create a `scripts` folder.
 
-During startup, TransitCore scans every directory inside `TC_Addons`.
+Your project should look like this.
 
-If the manifest is valid, the addon is loaded automatically.
+```text title="Current structure"
 
-A successful startup should produce a message similar to the following.
+MyFirstAddon/
+├── addon.yaml
+└── scripts/
 
-```text title="Console output"
-[TransitCore] Loading addon "My First Addon"
-[TransitCore] Hello TransitCore!
+```
+
+All LuaTC scripts of your Addon will be placed in this folder.
+
+## Create the entry point
+
+In the `scripts` folder, create a file named `main.luatc`.
+
+This file constitutes the entry point of your Addon.
+
+```text title="Structure"
+
+MyFirstAddon/
+├── addon.yaml
+└── scripts/
+    └── main.luatc
+
+```
+
+## Write your first script
+
+Add the following code in `main.luatc`.
+
+```luatc title="main.luatc"
+
+print("Hello TransitCore!")
+
+```
+
+When TransitCore loads your Addon, this message will be displayed in the console.
+
+## Launch Minecraft
+
+Launch Minecraft with TransitCore installed.
+
+During startup, TransitCore automatically analyzes the `TC_Addons` folder, detects the Addons present and loads those whose manifest is valid.
+
+If everything went correctly, your Addon will be loaded automatically.
+
+```text title="Console"
+
+[TransitCore] Loading addon: My First Addon
+Hello TransitCore!
 [TransitCore] Addon loaded successfully.
+
 ```
 
-## Understanding what happened
+<Alert severity="success">
 
-During startup, TransitCore performs several steps.
-
-1. Scan the `TC_Addons` directory.
-2. Detect every addon.
-3. Read each `addon.yaml`.
-4. Validate the manifest.
-5. Load LuaTC scripts.
-6. Register resources.
-7. Enable the addon.
-
-This process is repeated for every installed addon.
-
-## Handling errors
-
-If an addon contains an error, TransitCore reports the problem without stopping the framework.
-
-```text title="Console output"
-[TransitCore] Loading addon "My First Addon"
-[TransitCore] Error while loading addon.
-[TransitCore] Addon disabled.
-```
-
-<Alert severity="warning" title="Addon Isolation">
-
-A faulty addon cannot prevent TransitCore from starting.
-
-Only the addon that caused the error is disabled. Every other addon continues loading normally.
+Congratulations! Your first Addon is now loaded by TransitCore.
 
 </Alert>
 
-## What's next?
+## Add new resources
 
-Your addon currently contains a single LuaTC script.
+You can now enrich your Addon by adding other folders.
 
-The next step is to start creating actual content such as:
+For example:
 
-- Vehicles
-- Tracks
-- Signals
-- Stations
-- Components
-- User interfaces
+```text title="Complete structure"
 
-As your project grows, you will also add models, textures, animations and sounds.
-
-## Project recap
-
-Your project should now look like this.
-
-```text title="Current project structure"
 MyFirstAddon/
 ├── addon.yaml
 ├── scripts/
-│   └── main.luatc
 ├── models/
 ├── textures/
 ├── sounds/
-└── lang/
+├── animations/
+├── lang/
+└── ui/
+
 ```
 
-## Next Steps
+You are not required to create all these folders immediately.
 
-Continue with **Addon Manifest** to learn how the manifest works and discover every available configuration option.
+Add only those your Addon needs.
+
+## Test regularly
+
+It is recommended to test your Addon after each important change.
+
+This method allows quickly identifying the source of a problem and facilitates debugging.
+
+Avoid adding a large number of features before checking that everything works correctly.
+
+## Best practices
+
+When creating a new Addon:
+
+- Choose a unique identifier.
+- Use a clear project structure.
+- Test your Addon regularly.
+- Organize your scripts by feature.
+- Add new resources progressively.
+- Document your project with a `README.md` file.
+
+<Alert severity="warning">
+
+Avoid developing your entire Addon in a single `main.luatc` file. As soon as your project grows, distribute your code in several modules to facilitate its maintenance.
+
+</Alert>
+
+## Next step
+
+Your first Addon is now ready.
+
+You can continue with **Addon Manifest** to discover all the properties available in the `addon.yaml` file and learn how to correctly configure your project.

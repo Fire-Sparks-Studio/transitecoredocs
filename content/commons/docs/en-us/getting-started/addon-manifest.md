@@ -1,258 +1,278 @@
 ---
 title: Addon Manifest
-description: Learn how the addon manifest works and how TransitCore uses it to identify, validate and load addons.
+description: Discover the addon.yaml file and learn how to correctly configure your TransitCore Addon.
 ---
 
 # Addon Manifest
 
-Every TransitCore addon requires a manifest file.
+Each TransitCore Addon must mandatory contain an `addon.yaml` file.
 
-The manifest provides information about the addon and tells TransitCore how it should be loaded.
+This file constitutes the manifest of your Addon. It allows TransitCore to identify it, verify its compatibility and correctly load its resources during startup.
 
-Without a valid manifest, TransitCore ignores the addon during startup.
+<Alert severity="warning">
 
-<Alert severity="info">
-
-Every addon must contain a file named `addon.yaml` located at the root of the project.
+The `addon.yaml` file is mandatory. Without it, TransitCore will not detect your Addon.
 
 </Alert>
 
-## Manifest location
+## Location
 
-The manifest must always be placed at the root of the addon directory.
+The manifest must always be placed at the root of your project.
 
-```text title="Addon structure"
+```text title="Project structure"
+
 MyAddon/
 ├── addon.yaml
 ├── scripts/
 ├── models/
 ├── textures/
 └── ...
+
 ```
 
-TransitCore searches for this file when scanning the `TC_Addons` directory.
+TransitCore automatically looks for this file when loading Addons.
 
-## Basic manifest
+## Minimal example
 
-A minimal manifest looks like this.
+The simplest manifest looks like this.
 
 ```yaml title="addon.yaml"
+
 id: my_first_addon
 name: My First Addon
+version: 1.0.0
+author: YourName
+description: My first TransitCore Addon.
+
+```
+
+This file contains the essential information necessary for loading your Addon.
+
+## General structure
+
+Here is a more complete example.
+
+```yaml title="addon.yaml"
+
+id: metro_pack
+name: Metro Pack
+version: 1.2.0
+
+author: Fire Sparks Studio
+description: Adds several realistic metros.
+
+website: https://example.com
+license: MIT
+
+transitcore:
+  minimum: 1.0.0
+
+dependencies:
+  - common_assets
+  - railway_signals
+
+```
+
+Not all properties are mandatory.
+
+## Main properties
+
+| Property | Mandatory | Description |
+|-----------|-------------|-------------|
+| `id` | Yes | Unique identifier of the Addon. |
+| `name` | Yes | Displayed name of the Addon. |
+| `version` | Yes | Current version of the Addon. |
+| `author` | Yes | Main author. |
+| `description` | Yes | Short description of the Addon. |
+| `website` | No | Official website. |
+| `license` | No | Project license. |
+| `dependencies` | No | List of dependencies. |
+
+## The identifier
+
+The identifier (`id`) is used internally by TransitCore.
+
+It must be unique.
+
+```yaml title="Example"
+
+id: metro_pack
+
+```
+
+It is recommended:
+
+- to use only lowercase letters;
+- to separate words with underscores (`_`);
+- to avoid spaces and special characters.
+
+Examples:
+
+```yaml title="Valid examples"
+
+id: metro_pack
+id: french_trains
+id: lyon_network
+
+```
+
+## The name
+
+The name is displayed to players as well as in the logs.
+
+```yaml title="Example"
+
+name: Metro Pack
+
+```
+
+Unlike the identifier, the name can contain spaces, uppercase letters and special characters.
+
+## The version
+
+Each Addon has a version.
+
+```yaml title="Example"
 
 version: 1.0.0
 
-author: Your Name
-
-description: My first TransitCore addon.
-
-entry: scripts/main.luatc
 ```
 
-## Properties
+It is recommended to use the **SemVer** format:
 
-The following table describes the most common manifest properties.
-
-| Property | Required | Description |
-|----------|:--------:|-------------|
-| `id` | Yes | Unique identifier of the addon. |
-| `name` | Yes | Display name shown inside TransitCore. |
-| `version` | Yes | Current addon version. |
-| `author` | Yes | Addon author. |
-| `description` | No | Short description of the addon. |
-| `entry` | Yes | Main LuaTC file executed during startup. |
-
-## Addon identifier
-
-Every addon must define a unique identifier.
-
-```yaml title="Example"
-id: french_signals
+```
+MAJOR.MINOR.PATCH
 ```
 
-Identifiers should:
+For example:
 
-- Use lowercase letters.
-- Use underscores instead of spaces.
-- Never change once the addon has been published.
+- `1.0.0`
+- `1.2.4`
+- `2.0.0`
 
-<Alert severity="warning">
+## The author
 
-Changing an addon identifier after release may break compatibility with saved worlds and addon dependencies.
-
-</Alert>
-
-## Version
-
-The version identifies the current release of the addon.
-
-TransitCore follows Semantic Versioning.
+This property indicates the main creator of the Addon.
 
 ```yaml title="Example"
-version: 1.2.0
-```
 
-Typical version progression:
-
-| Version | Meaning |
-|----------|---------|
-| 1.0.0 | First stable release |
-| 1.1.0 | New features |
-| 1.1.1 | Bug fixes |
-| 2.0.0 | Breaking changes |
-
-## Author
-
-The author field identifies the creator of the addon.
-
-```yaml title="Example"
 author: Fire Sparks Studio
+
 ```
 
-Future versions of TransitCore may support multiple authors.
+If several people work on the project, you can indicate the responsible organization.
 
-## Description
+## The description
 
-The description provides a short summary of the addon.
+The description briefly presents your Addon.
 
 ```yaml title="Example"
-description: Adds realistic French railway signals.
+
+description: Adds several realistic French metros.
+
 ```
 
-Descriptions should remain concise.
+Try to remain concise while clearly explaining the content of your Addon.
 
-## Entry point
+## The website
 
-The entry point specifies which LuaTC script is executed when the addon starts.
+You can provide an official website.
 
 ```yaml title="Example"
-entry: scripts/main.luatc
+
+website: https://example.com
+
 ```
 
-TransitCore loads this file first.
+This property is optional.
 
-Additional scripts can then be loaded from the entry script.
+## The license
+
+The license indicates the usage conditions of your Addon.
+
+```yaml title="Example"
+
+license: MIT
+
+```
+
+Among the most common licenses:
+
+- MIT
+- LGPL-3.0
+- GPL-3.0
+- Apache-2.0
+
+## TransitCore compatibility
+
+You can specify the minimum version of TransitCore required.
+
+```yaml title="Example"
+
+transitcore:
+  minimum: 1.0.0
+
+```
+
+TransitCore will refuse to load an Addon incompatible with the installed version.
 
 ## Dependencies
 
-An addon can require other addons.
+An Addon can depend on other Addons.
 
 ```yaml title="Example"
+
 dependencies:
-  - tc_common
-  - french_assets
+  - common_assets
+  - french_signals
+
 ```
 
-TransitCore verifies that every dependency is available before loading the addon.
+Before loading your Addon, TransitCore automatically checks that all dependencies are available.
 
-If a dependency is missing, the addon is not loaded.
+<Alert severity="info">
 
-<Alert severity="warning">
-
-Missing dependencies prevent an addon from loading but do not stop TransitCore or other addons from starting.
+If a dependency is missing, the Addon concerned will not be loaded to avoid any unexpected behavior.
 
 </Alert>
-
-## Supported TransitCore versions
-
-An addon can specify the versions of TransitCore it supports.
-
-```yaml title="Example"
-transitcore:
-
-  minimum: 1.0.0
-
-  maximum: 1.x
-```
-
-This helps prevent compatibility issues between different framework versions.
-
-## Optional information
-
-Additional metadata may also be included.
-
-```yaml title="Example"
-website: https://example.com
-
-repository: https://github.com/example/project
-
-license: LGPL-3.0
-
-issues: https://github.com/example/project/issues
-```
-
-These properties are optional but recommended for publicly distributed addons.
-
-## Complete example
-
-```yaml title="addon.yaml"
-id: french_signals
-
-name: French Signals
-
-version: 1.2.0
-
-author: Fire Sparks Studio
-
-description: Adds realistic SNCF railway signals.
-
-entry: scripts/main.luatc
-
-dependencies:
-  - tc_common
-
-transitcore:
-  minimum: 1.0.0
-
-website: https://example.com
-
-repository: https://github.com/example/project
-
-license: LGPL-3.0
-```
 
 ## Validation
 
-During startup, TransitCore validates every manifest before loading the addon.
+At startup, TransitCore automatically checks:
 
-Validation includes:
+- the presence of the manifest;
+- mandatory properties;
+- the syntax of the file;
+- version compatibility;
+- declared dependencies.
 
-- Required properties.
-- Identifier format.
-- Version format.
-- Entry file.
-- Dependency resolution.
-- TransitCore compatibility.
+In case of an error, a detailed message is recorded in the logs.
 
-If validation fails, the addon is skipped.
+```text title="Example"
 
-```text title="Console output"
-[TransitCore] Loading addon "French Signals"
+[TransitCore] Invalid addon manifest.
+Missing required property: id
 
-[TransitCore] Invalid manifest.
-
-[TransitCore] Addon disabled.
 ```
-
-<Alert severity="danger" title="Manifest Errors">
-
-An invalid manifest prevents the addon from loading.
-
-TransitCore reports the error in the logs and continues loading every remaining addon.
-
-</Alert>
 
 ## Best practices
 
-When creating a manifest:
+To ensure the compatibility of your Addon:
 
-- Use a unique identifier.
-- Follow Semantic Versioning.
-- Keep the description concise.
-- Declare every required dependency.
-- Specify supported TransitCore versions.
-- Keep the manifest at the root of the project.
+- choose a unique identifier;
+- use semantic versioning (SemVer);
+- write a clear description;
+- declare all necessary dependencies;
+- update the version with each new release.
 
-## Next Steps
+<Alert severity="success">
 
-Continue with **LuaTC Basics** to learn the fundamentals of the LuaTC scripting language and begin writing your first TransitCore scripts.
+The manifest is the first thing TransitCore reads when loading an Addon. Take the time to keep it up to date, as it contains all the essential information about your project.
+
+</Alert>
+
+## Next step
+
+Your manifest is now correctly configured.
+
+You can continue with **The basics of LuaTC** to discover the scripting language used to develop TransitCore Addons.

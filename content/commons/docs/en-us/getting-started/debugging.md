@@ -1,241 +1,208 @@
 ---
 title: Debugging
-description: Learn how to identify, understand and resolve issues while developing TransitCore addons.
+description: Learn to identify, understand and fix errors encountered during the development of your TransitCore Addons.
 ---
 
 # Debugging
 
-Developing addons inevitably involves testing, experimentation and debugging.
+Debugging is an essential step in developing an Addon.
 
-TransitCore provides detailed logging, validation and runtime error reporting to help you quickly identify problems without affecting the rest of the framework.
+Even the simplest projects can encounter syntax errors, configuration problems or unexpected behaviors. TransitCore provides several tools to quickly identify them.
 
 <Alert severity="info">
 
-A runtime error inside one addon never prevents TransitCore or other addons from loading. The faulty addon is isolated and disabled automatically.
+When an error occurs, TransitCore tries to provide a message as precise as possible to help you quickly identify its source.
 
 </Alert>
 
-## Understanding the startup logs
+## Logs
 
-Every time Minecraft starts, TransitCore records information about the loading process.
+TransitCore records all important information in its logs.
 
-Typical information includes:
+You will notably find:
 
-- Framework initialization
-- Addon discovery
-- Manifest validation
-- Dependency resolution
-- LuaTC execution
-- Resource registration
-- Runtime errors
-- Warnings
+- Loaded Addons.
+- LuaTC errors.
+- Warnings.
+- Loading errors.
+- Diagnostic information.
 
-Monitoring the console during development is the easiest way to detect problems.
+The logs are available in the following folder.
 
-```text title="Console output"
-[TransitCore] Initializing...
+```text title="Logs folder"
 
-[TransitCore] Discovering addons...
-
-[TransitCore] Loading addon "French Signals"
-
-[TransitCore] Registering resources...
-
-[TransitCore] Addon loaded successfully.
-```
-
-## Log files
-
-TransitCore stores detailed logs inside its dedicated log directory.
-
-```text title="Log directory"
 .minecraft/
 └── TC_Logs/
+
 ```
 
-The log files contain additional information that may not appear directly in the Minecraft console.
+It is recommended to consult the logs before any modification to your code.
 
-They are especially useful when reporting issues or diagnosing unexpected behavior.
+## Reading an error message
 
-## Common startup errors
+When an error occurs, TransitCore generally displays a message similar to this one.
 
-Some errors occur before the addon is even executed.
+```text title="Example"
 
-These include:
+[LuaTC] Runtime Error
+Attempt to call nil value.
 
-- Missing `addon.yaml`
-- Invalid manifest
-- Missing entry script
-- Invalid version
-- Missing dependency
-- Unsupported TransitCore version
-
-Example:
-
-```text title="Manifest error"
-[TransitCore] Loading addon "Example"
-
-[TransitCore] Invalid addon manifest.
-
-[TransitCore] Addon disabled.
 ```
 
-## LuaTC runtime errors
+This message indicates:
 
-Errors may also occur while executing LuaTC scripts.
+- The system concerned.
+- The type of error.
+- A description of the problem.
 
-```luatc title="Example"
-local train = nil
-
-train:setName("Example")
-```
-
-Produces:
-
-```text title="Runtime error"
-LuaTC Runtime Error
-
-Attempt to index a nil value.
-```
-
-The stack trace identifies the file and line responsible for the error.
+In this example, a non-existent function was called.
 
 ## Syntax errors
 
-LuaTC validates scripts before execution.
-
-Example:
-
-```luatc title="Invalid script"
-local value =
-```
-
-Produces:
-
-```text title="Syntax error"
-Unexpected end of file.
-```
-
-Syntax errors prevent the script from executing.
-
-## Resource errors
-
-TransitCore also validates resources referenced by addons.
-
-Typical issues include:
-
-- Missing models
-- Missing textures
-- Missing animations
-- Missing sounds
-- Invalid file paths
-- Duplicate identifiers
-
-Whenever possible, TransitCore reports the exact resource that caused the problem.
-
-## Dependency errors
-
-If an addon depends on another addon that is not installed, TransitCore reports the issue.
-
-```text title="Dependency error"
-Missing dependency:
-
-tc_common
-```
-
-The addon is skipped until every required dependency becomes available.
-
-## Reading stack traces
-
-When an unexpected error occurs, TransitCore displays a stack trace.
-
-The stack trace indicates:
-
-- The file where the error occurred.
-- The line number.
-- The function being executed.
-- The sequence of calls leading to the error.
-
-Reading the stack trace is often the fastest way to identify the source of a problem.
-
-## Debugging tips
-
-When debugging an addon:
-
-- Read the first reported error.
-- Avoid ignoring warnings.
-- Test changes incrementally.
-- Verify file names and paths.
-- Check the addon manifest.
-- Confirm that dependencies are installed.
-- Restart the game after major changes if hot reload is unavailable.
-
-<Alert severity="success">
-
-Most issues can be resolved by carefully reading the first error reported in the logs. Later errors are often a consequence of the first one.
-
-</Alert>
-
-## Logging information
-
-LuaTC provides logging utilities that help developers inspect addon behavior.
-
-```luatc title="Logging a message"
-tc.logger:info("Vehicle registered.")
-
-tc.logger:warning("Configuration missing.")
-
-tc.logger:error("Unable to load resource.")
-```
-
-Logging important steps during initialization makes debugging much easier.
-
-## Isolating problems
-
-When an addon becomes large, isolate problems by testing one system at a time.
+Syntax errors prevent a script from being loaded.
 
 For example:
 
-- Test the manifest.
-- Test LuaTC scripts.
-- Test models.
-- Test animations.
-- Test sounds.
-- Test user interfaces.
+```luatc title="Incorrect"
 
-Adding components progressively makes it easier to determine where an issue originates.
+local speed =
 
-## Reporting issues
+```
 
-If you encounter a problem you cannot resolve, include the following information when reporting it:
+TransitCore will immediately report this error when loading the script.
 
-- TransitCore version
-- Minecraft version
-- NeoForge version
-- Addon version
-- Complete log files
-- Steps to reproduce the issue
-- Screenshots if applicable
+Always fix syntax errors before continuing your tests.
 
-Providing detailed information significantly improves the quality of bug reports.
+## Runtime errors
+
+A runtime error occurs when a script executes, but encounters an unexpected situation.
+
+For example:
+
+```luatc title="Incorrect"
+
+local train = nil
+
+train:setSpeed(80)
+
+```
+
+Since `train` does not exist, LuaTC generates an error.
+
+Before using a variable, always make sure it contains a valid value.
+
+## Using print()
+
+The `print()` function is one of the simplest tools to understand a script's behavior.
+
+```luatc title="Example"
+
+print("Initializing the Addon...")
+
+```
+
+You can also display the value of a variable.
+
+```luatc title="Displaying a variable"
+
+print(speed)
+
+```
+
+These messages will appear directly in the console as well as in the logs.
+
+## Verify the manifest
+
+If your Addon is not loaded, first check the `addon.yaml` file.
+
+The most frequent errors are:
+
+- a missing identifier;
+- a missing mandatory property;
+- a YAML syntax error;
+- an incompatible version of TransitCore.
+
+```text title="Example"
+
+[TransitCore] Invalid addon manifest.
+Missing required property: id
+
+```
+
+## Verify dependencies
+
+If your Addon depends on another Addon, make sure it is properly installed.
+
+For example:
+
+```yaml title="addon.yaml"
+
+dependencies:
+  - common_assets
+
+```
+
+If a dependency is missing, TransitCore will automatically disable the Addon concerned.
+
+## Debug progressively
+
+When developing a new feature:
+
+1. Add a small change.
+2. Launch Minecraft.
+3. Check the logs.
+4. Test the behavior.
+5. Fix any errors.
+
+This method is much more effective than adding several hundred lines of code before performing a first test.
+
+<Alert severity="success">
+
+Develop progressively. Testing regularly makes it much easier to locate errors.
+
+</Alert>
+
+## Common errors
+
+| Problem | Possible cause |
+|----------|----------------|
+| The Addon does not load | The `addon.yaml` file is missing or invalid. |
+| No script executes | The `main.luatc` file is missing or contains an error. |
+| A resource is not found | The file path is incorrect. |
+| A function causes an error | A variable is `nil` or a parameter is invalid. |
+| An Addon is disabled | A dependency is missing or the TransitCore version is incompatible. |
 
 ## Best practices
 
-To reduce debugging time:
+To facilitate debugging:
 
-- Keep scripts modular.
-- Use meaningful variable names.
-- Validate resources before testing.
-- Organize files consistently.
-- Log important events during startup.
-- Read warnings before they become errors.
+- Consult the logs after each launch.
+- Test one feature at a time.
+- Use `print()` to track the execution of your scripts.
+- Fix errors as soon as they appear.
+- Organize your code in small modules that are easy to maintain.
 
-Following these practices will make your addons easier to maintain and troubleshoot.
+<Alert severity="warning">
 
-## Next Steps
+Avoid hiding errors or ignoring them. Even if your Addon seems to work, an unfixed error can cause unexpected behaviors or make diagnosis more difficult later on.
 
-Congratulations!
+</Alert>
 
-You have completed the **Getting Started** section.
+## Need help?
 
-Continue with **LuaTC Overview** to begin learning the TransitCore scripting language in greater detail.
+If you cannot resolve a problem:
+
+- Consult the TransitCore logs.
+- Check the API documentation.
+- Compare your code with the provided examples.
+- Reproduce the problem in a minimal project before asking for help.
+
+Providing the complete error message as well as the logs concerned will allow obtaining a faster and more precise response.
+
+## Congratulations!
+
+You have completed the **Getting started** section.
+
+You now know the basics of TransitCore, know how to create an Addon, organize your project, write LuaTC scripts, run your Addon and diagnose the most common errors.
+
+You are now ready to explore the rest of the documentation, notably the **Guides**, **LuaTC** and the **API Reference**, to develop more complete Addons.

@@ -1,23 +1,23 @@
 ---
-title: Folder Structure
-description: Learn how TransitCore organizes addon files and how each directory is used.
+title: Folder structure
+description: Discover how TransitCore organizes an Addon's files and the role of each folder.
 ---
 
-# Folder Structure
+# Folder structure
 
-Every TransitCore addon follows a standardized directory structure.
+Each TransitCore Addon follows a standardized file organization.
 
-Using the recommended layout keeps projects organized, improves maintainability and allows TransitCore to automatically discover resources without requiring additional configuration.
+Adopting this structure facilitates project maintenance, improves its readability and allows TransitCore to automatically detect resources without additional configuration.
 
 <Alert severity="info">
 
-TransitCore automatically scans known directories inside an addon. Following the recommended structure ensures that resources are discovered consistently across every project.
+TransitCore automatically analyzes an Addon's known folders. By following the recommended structure, all resources are detected and loaded consistently.
 
 </Alert>
 
 ## Standard structure
 
-A typical addon is organized as follows.
+An Addon is generally organized as follows.
 
 ```text title="Addon structure"
 MyAddon/
@@ -32,13 +32,13 @@ MyAddon/
 └── README.md
 ```
 
-Each directory has a dedicated purpose.
+Each folder has a well-defined role.
 
-## Root directory
+## Project root
 
-The root directory contains the addon manifest and every resource required by the addon.
+The root contains the Addon manifest as well as all the resources used by it.
 
-```text title="Root directory"
+```text title="Project root"
 MyAddon/
 ├── addon.yaml
 ├── scripts/
@@ -46,15 +46,15 @@ MyAddon/
 └── ...
 ```
 
-TransitCore identifies an addon by locating the `addon.yaml` manifest.
+TransitCore identifies an Addon through the `addon.yaml` file.
 
-Without this file, the directory is ignored.
+Without this file, the folder is ignored during startup.
 
 ## scripts/
 
-The `scripts` directory contains every LuaTC script executed by the addon.
+The `scripts` folder contains all LuaTC scripts executed by the Addon.
 
-```text title="Scripts directory"
+```text title="Scripts folder"
 scripts/
 ├── main.luatc
 ├── vehicles/
@@ -64,22 +64,22 @@ scripts/
 └── shared/
 ```
 
-This directory usually contains:
+It generally contains:
 
-- Vehicle definitions
-- Signal logic
-- Railway systems
-- Gameplay mechanics
-- Utility modules
-- Shared libraries
+- Vehicle definitions.
+- Signal logic.
+- Railway systems.
+- Gameplay mechanics.
+- Utility modules.
+- Shared libraries.
 
-`main.luatc` is generally used as the addon entry point.
+The `main.luatc` file is generally used as the Addon's entry point.
 
 ## models/
 
-The `models` directory contains every 3D model used by the addon.
+The `models` folder contains all 3D models used by the Addon.
 
-```text title="Models directory"
+```text title="Models folder"
 models/
 ├── vehicles/
 ├── signals/
@@ -88,15 +88,15 @@ models/
 └── props/
 ```
 
-TransitCore supports multiple model formats depending on the installed model loaders.
+The supported formats depend on the installed model loader.
 
-Models are loaded through the Node system and can later be manipulated from LuaTC.
+Models are then loaded via the **Node** system and can be manipulated from LuaTC.
 
 ## textures/
 
-Textures are stored separately from models.
+All textures are grouped in the `textures` folder.
 
-```text title="Textures directory"
+```text title="Textures folder"
 textures/
 ├── vehicles/
 ├── signals/
@@ -105,13 +105,13 @@ textures/
 └── misc/
 ```
 
-Keeping textures organized by category simplifies maintenance as projects grow.
+Organizing textures by category simplifies their maintenance, especially as the project grows.
 
 ## animations/
 
-Animations define moving parts of a model.
+The `animations` folder contains all animations used by the models.
 
-```text title="Animations directory"
+```text title="Animations folder"
 animations/
 ├── doors/
 ├── cab/
@@ -120,22 +120,22 @@ animations/
 └── indicators/
 ```
 
-Animations are associated with Nodes and controlled through LuaTC.
+Animations are associated with **Nodes** and controlled from LuaTC.
 
-Typical animated elements include:
+The most common animated elements are:
 
-- Doors
-- Buttons
-- Switches
-- Pantographs
-- Windshield wipers
-- Driver controls
+- Doors.
+- Buttons.
+- Switches.
+- Pantographs.
+- Wipers.
+- Cab controls.
 
 ## sounds/
 
-Audio resources are stored inside the `sounds` directory.
+The `sounds` folder contains all audio resources of the Addon.
 
-```text title="Sounds directory"
+```text title="Sounds folder"
 sounds/
 ├── engines/
 ├── brakes/
@@ -145,13 +145,13 @@ sounds/
 └── ui/
 ```
 
-TransitCore automatically loads supported sound files and makes them available through the audio service.
+TransitCore automatically detects compatible audio files and makes them accessible via the audio service.
 
 ## lang/
 
-The `lang` directory contains localization files.
+The `lang` folder contains translation files.
 
-```text title="Localization"
+```text title="Language files"
 lang/
 ├── en_us.json
 ├── fr_fr.json
@@ -159,15 +159,15 @@ lang/
 └── ja_jp.json
 ```
 
-Every visible text should be localized whenever possible.
+All texts displayed to the player should be localized rather than directly written in LuaTC scripts.
 
-This allows the addon to support multiple languages without modifying LuaTC scripts.
+This makes it possible to offer several languages without modifying the Addon code.
 
 ## ui/
 
-The `ui` directory contains graphical user interface resources.
+The `ui` folder groups all resources related to the user interface.
 
-```text title="UI directory"
+```text title="User interface folder"
 ui/
 ├── icons/
 ├── images/
@@ -175,38 +175,38 @@ ui/
 └── themes/
 ```
 
-User interface assets may include:
+It may notably contain:
 
-- Icons
-- Menus
-- Configuration panels
-- Dashboard layouts
-- Custom textures
+- Icons.
+- Menus.
+- Configuration panels.
+- Dashboards.
+- Interface textures.
 
 ## README.md
 
-Although optional, every addon should include a README file.
+Although optional, it is strongly recommended to add a `README.md` file to your Addon.
 
 ```text title="Documentation"
 README.md
 ```
 
-The README can explain:
+This file can contain:
 
-- The purpose of the addon
-- Installation instructions
-- Compatibility information
-- Known limitations
-- License
-- Credits
+- A presentation of the Addon.
+- Installation instructions.
+- Compatibility information.
+- Known limitations.
+- The license.
+- Credits.
 
-A well-written README makes it easier for other developers to understand and contribute to the project.
+A well-written README facilitates understanding of the project and encourages community contributions.
 
 ## Recommended organization
 
-As an addon becomes larger, grouping files by feature is recommended.
+When your Addon becomes larger, it is advisable to organize files by feature.
 
-```text title="Large addon example"
+```text title="Example of a large Addon"
 scripts/
 ├── vehicles/
 │   ├── metro/
@@ -219,42 +219,44 @@ scripts/
 └── shared/
 ```
 
-This approach improves readability and makes code reuse significantly easier.
+This organization improves code readability, facilitates its maintenance and encourages its reuse.
 
 <Alert severity="success">
 
-Organize files by feature rather than placing everything inside a single directory. A consistent structure makes large addons easier to navigate and maintain.
+Organize your files by feature rather than grouping everything in a single folder. A consistent structure makes Addons simpler to maintain and evolve.
 
 </Alert>
 
-## Files to avoid modifying
+## Folders managed by TransitCore
 
-Some directories created by TransitCore are managed automatically.
+TransitCore automatically creates several folders in your Minecraft directory.
 
 For example:
 
-```text title="TransitCore directories"
+```text title="TransitCore folders"
 .minecraft/
 ├── TC_Cache/
 ├── TC_Logs/
 └── TC_Config/
 ```
 
-These directories should generally not be modified manually unless instructed by the documentation.
+These folders are managed automatically by the framework.
+
+It is generally discouraged to modify them manually, unless otherwise indicated in the documentation.
 
 ## Best practices
 
-When organizing an addon:
+To efficiently organize an Addon:
 
-- Keep related files together.
-- Use descriptive file names.
-- Separate reusable code into shared modules.
-- Avoid duplicate resources.
-- Follow a consistent naming convention.
-- Keep the project structure identical across addons whenever possible.
+- Group files related to the same feature.
+- Use explicit file names.
+- Place reusable code in shared modules.
+- Avoid duplicated resources.
+- Adopt a consistent naming convention.
+- Use the same structure for all your Addons.
 
-A predictable directory layout benefits both developers and users.
+A predictable organization facilitates development, maintenance and collaboration.
 
-## Next Steps
+## Next step
 
-Now that you understand how addon files are organized, continue with **Your First Addon** to create a complete TransitCore addon from scratch.
+Now that you know the role of each folder, continue with **Your first Addon** to create your first TransitCore project.
