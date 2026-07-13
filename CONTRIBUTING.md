@@ -77,7 +77,8 @@ non-trivial changes to content (wording, structure, new pages) must be made
 > The `content/commons/docs/fr-fr/` folder is a manually maintained French
 > reference translation. It is kept in sync by the maintainers and should not
 > be edited through Pull Requests unless you are also updating the English
-> source. For any other language, please use Crowdin (next section).
+> source. For any other language, please use Crowdin (next section). See the
+> README for the full list of supported locales.
 
 ### What you can help with
 
@@ -127,11 +128,14 @@ To contribute a translation:
 1. Join the project on Crowdin using the link above.
 2. Choose your language (or request it if it is not listed yet).
 3. Translate or vote on strings online; Crowdin will push the result back to
-   this repository through `content/crowdin/wconfirm/...` (see `crowdin.yml`).
+   this repository under `content/commons/docs/<locale>/` and
+   `content/commons/navigation/<locale>/` (see `crowdin.yml`).
 
-Crowdin is the single source of truth for everything under
-`content/crowdin/wconfirm/`. Please do not open Pull Requests that modify files
-in that folder directly — they will be overwritten by the next Crowdin sync.
+Crowdin is the single source of truth for every locale **other than `en-us`**
+and `fr-fr`. Please do not open Pull Requests that modify translated files
+directly under `content/commons/docs/<locale>/` or
+`content/commons/navigation/<locale>/` — they will be overwritten by the next
+Crowdin sync.
 
 If you spot a mistake in the **English source** (a typo or a sentence that is
 hard to translate), open a PR against `content/commons/docs/en-us/` as described
