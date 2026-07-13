@@ -165,7 +165,7 @@ LuaTC allows interacting directly with TransitCore.
 
 For example, to create a vehicle:
 
-```text title="Create a vehicle"
+```luatc title="Create a vehicle"
 local vehicle = tc.vehicle.create(tc.VehicleType.TRAIN)
 
 vehicle:setName("TGV Duplex")

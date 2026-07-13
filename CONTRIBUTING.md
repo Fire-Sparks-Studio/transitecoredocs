@@ -6,7 +6,7 @@ conventions to follow so that your contribution can be merged quickly.
 
 This repository (`transitecoredocs`) only contains **documentation**. The mod
 source code lives in a separate repository:
-[Fire-Sparks-Studio/transitcore](https://github.com/Fire-Sparks-Studio/transitcore).
+[Le-noirrateur/transitcore](https://github.com/Le-noirrateur/transitcore).
 
 By contributing to this repository, you agree that your contributions are
 licensed under the [Creative Commons Attribution-ShareAlike 4.0 International
@@ -47,8 +47,8 @@ Please open GitHub issues on the **right** repository:
 
 | Subject | Repository |
 |--------|-----------|
-| Documentation typos, inaccuracies, missing or outdated pages, broken links | [`Fire-Sparks-Studio/transitecoredocs` issues](https://github.com/Fire-Sparks-Studio/transitecoredocs/issues) |
-| Bugs, crashes or feature requests related to the mod, LuaTC or Addons | [`Fire-Sparks-Studio/transitcore` issues](https://github.com/Fire-Sparks-Studio/transitcore/issues) |
+| Documentation typos, inaccuracies, missing or outdated pages, broken links | Not avaliable for now |
+| Bugs, crashes or feature requests related to the mod, LuaTC or Addons | [`transitcore/issues`](https://github.com/Le-noirrateur/transitcore/issues) |
 
 When opening an issue, please include:
 
@@ -148,7 +148,7 @@ above — fixing the source benefits every language at once.
 The mod itself (Java code, LuaTC runtime, rendering, physics, networking, etc.)
 is developed in a separate repository:
 
-> <https://github.com/Fire-Sparks-Studio/transitcore>
+> <https://github.com/Le-noirrateur/transitcore/issues>
 
 Please:
 
