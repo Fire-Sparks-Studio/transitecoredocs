@@ -1,63 +1,63 @@
 ---
 title: Overview
-description: Learn what TransitCore is, how it works and the principles behind its design.
+description: Find out what TransitCore is, how it works and the principles that guided its design.
 ---
 
 # Overview
 
 Welcome to **TransitCore**.
 
-TransitCore is a modular railway simulation framework for Minecraft, designed to build realistic railway networks through a powerful Addon system and the **LuaTC** scripting language.
+TransitCore is a modular railway simulation framework for Minecraft, designed to create realistic railway networks through a powerful Addon system and the **LuaTC** scripting language.
 
-Unlike traditional railway mods, TransitCore does not directly include trains, metros or infrastructure. The framework provides the simulation engine, while all content is distributed as independent Addons.
+Unlike traditional railway mods, TransitCore does not directly provide vehicles or infrastructure. The framework supplies the simulation engine, while trains, metros, trams, tracks, signals and other content are distributed as independent Addons.
 
 <Alert severity="info">
 
-TransitCore completely separates the **engine** from the **content**. The framework provides the simulation systems, while Addons provide vehicles, tracks, signalling, stations, overhead catenary and every other railway asset.
+TransitCore completely separates the **engine** from the **content**. The framework provides the various simulation systems, while Addons bring the vehicles, tracks, signals, stations and all other railway elements.
 
 </Alert>
 
 ## Why TransitCore?
 
-TransitCore is built around four core principles.
+TransitCore was developed around four fundamental principles.
 
 ### Realism
 
-TransitCore aims to reproduce railway systems as accurately as possible while remaining fully integrated with Minecraft.
+The aim of TransitCore is to reproduce the operation of a railway network as faithfully as possible, while remaining perfectly integrated into Minecraft.
 
-The framework supports:
+The framework notably supports:
 
 - Advanced vehicle simulation.
 - Realistic braking systems.
 - Railway signalling.
 - Electrical systems.
-- Passenger and station operations.
+- Passenger management.
 - Multiplayer synchronisation.
-- High-speed rail operations.
+- High-speed railway lines.
 
 ### Modularity
 
-Everything in TransitCore is designed to be modular.
+Everything in TransitCore is designed in a modular way.
 
-The framework itself contains only the simulation engine.
+The framework itself contains only the engines necessary for its operation.
 
-Vehicles, infrastructure, sounds, textures, user interfaces and gameplay extensions are distributed as independent Addons that can be installed, updated or removed separately.
+Vehicles, infrastructure, sounds, textures, user interfaces and gameplay extensions are distributed as Addons that can be installed, updated or removed independently of one another.
 
 ### Performance
 
 TransitCore is designed to efficiently handle large railway networks.
 
-Rendering, physics, networking and simulation are optimised to minimise unnecessary calculations while maintaining realistic behaviour.
+Rendering, physics, networking and simulation are optimised to limit unnecessary computations while maintaining realistic behaviour.
 
 ### Extensibility
 
-All framework features are available through **LuaTC**, the official scripting language of TransitCore.
+All the features offered by TransitCore are accessible via **LuaTC**, the official scripting language of the framework.
 
-Developers can create complete Addons without modifying the Java engine.
+Developers can thus create complete Addons without having to modify the Java code of TransitCore.
 
 ## Architecture
 
-TransitCore consists of multiple independent systems working together.
+TransitCore is composed of several independent systems that work together.
 
 ```text title="TransitCore Architecture"
 TransitCore
@@ -65,7 +65,7 @@ TransitCore
 ├── Physics Engine
 ├── Rendering Engine
 ├── Railway Engine
-├── Signalling Engine
+├── Signaling Engine
 ├── Electrical Engine
 ├── Audio Engine
 ├── Animation Engine
@@ -74,15 +74,15 @@ TransitCore
 └── Addon Loader
 ```
 
-Each system is responsible for a specific part of the framework and communicates through a stable public API.
+Each system is responsible for a specific part of the framework and communicates with the others through stable public APIs.
 
 ## LuaTC
 
 LuaTC is the official scripting language of TransitCore.
 
-It extends Lua with APIs specifically designed for railway simulation, allowing developers to interact with the framework without accessing Minecraft internals.
+Based on Lua, it extends it with APIs specifically designed for railway simulation. It allows developers to interact with the framework without having to directly access Minecraft's internal mechanisms.
 
-```luatc title="Creating a Vehicle"
+```luatc title="Create a vehicle"
 local train = tc.vehicle.create(tc.VehicleType.TRAIN)
 
 train:setName("TGV Duplex")
@@ -92,33 +92,33 @@ train:setMass(383000)
 
 <Alert severity="success">
 
-Most Addons can be developed entirely in LuaTC. Java is only required when extending the TransitCore engine itself.
+The majority of Addons can be developed entirely in LuaTC. Java is only necessary to extend the internal operation of TransitCore.
 
 </Alert>
 
 ## Addons
 
-TransitCore uses a fully modular Addon architecture.
+TransitCore relies on a fully Addon-based architecture.
 
 Each Addon is loaded independently and communicates with the framework through LuaTC.
 
-Addons can introduce:
+An Addon can add, for example:
 
 - Trains.
 - Metros.
 - Trams.
 - Funiculars.
-- Tracks.
+- Railway tracks.
 - Signals.
-- Overhead catenary.
+- Overhead lines.
 - Stations.
 - User interfaces.
 - Sounds.
 - Gameplay extensions.
 
-If an Addon encounters an error during start-up, TransitCore automatically disables it without preventing the framework or other Addons from continuing to load.
+If an Addon encounters an error during loading, TransitCore automatically disables it without preventing the framework or other Addons from starting.
 
-```text title="Addon Structure"
+```text title="Example Addon structure"
 MyAddon/
 ├── addon.yaml
 ├── scripts/
@@ -130,28 +130,28 @@ MyAddon/
 
 <Alert severity="warning" title="Addon Isolation">
 
-A faulty Addon cannot prevent TransitCore from starting. The framework automatically detects the error, disables only the affected Addon and continues loading every remaining Addon.
+A faulty Addon cannot prevent TransitCore from starting. The framework automatically detects the error, disables only the Addon concerned and continues loading all the others.
 
 </Alert>
 
-## Documentation
+## The documentation
 
 The documentation is organised into several sections.
 
 | Section | Description |
 |---------|-------------|
-| Getting Started | Install TransitCore and create your first Addon. |
-| LuaTC | Learn the official scripting language of the framework. |
-| Guides | Detailed guides covering every major TransitCore system. |
-| API Reference | Complete reference for services, classes, methods and events. |
-| Examples | Sample projects demonstrating recommended practices. |
+| Getting started | Install TransitCore and create your first Addon. |
+| LuaTC | Discover the official scripting language of the framework. |
+| Guides | Detailed tutorials covering the main systems of TransitCore. |
+| API Reference | Complete documentation of services, classes, methods and events. |
+| Examples | Example projects illustrating best practices and framework features. |
 
 ## Open Source
 
-TransitCore is an open-source project developed by **Fire Sparks Studio**.
+TransitCore is an open source project developed by **Fire Sparks Studio**.
 
-The source code, documentation and issue tracker are publicly available, allowing the community to propose improvements, report issues and contribute to the development of the framework.
+The source code, documentation and issue tracking system are publicly accessible to allow the community to propose improvements, report anomalies and contribute to the development of the framework.
 
-## Next Steps
+## Next step
 
-If you're new to TransitCore, continue with **Installation** to set up your development environment and create your first Addon.
+If you are discovering TransitCore, continue with **Installation** to prepare your development environment and create your first Addon.

@@ -1,59 +1,59 @@
 ---
 title: Přehled
-description: Zjistěte, co je TransitCore, jak funguje a jaké principy stojí za jeho návrhem.
+description: Zjistěte, co je TransitCore, jak funguje a jaké principy stály za jeho návrhem.
 ---
 
 # Přehled
 
 Vítejte v **TransitCore**.
 
-TransitCore je modulární framework pro simulaci železnice v Minecraftu, navržený pro vytváření realistických železničních sítí pomocí výkonného systému Addonů a skriptovacího jazyka **LuaTC**.
+TransitCore je modulární framework pro simulaci železnice v Minecraftu, navržený pro vytváření realistických železničních sítí díky výkonnému systému Addonů a skriptovacímu jazyku **LuaTC**.
 
-Na rozdíl od tradičních železničních modů TransitCore přímo neobsahuje vlaky, metro ani infrastrukturu. Framework poskytuje simulační jádro, zatímco veškerý obsah je distribuován jako samostatné Addony.
+Na rozdíl od tradičních železničních modů TransitCore přímo neposkytuje vozidla ani infrastrukturu. Framework dodává simulační engine, zatímco vlaky, metro, tramvaje, koleje, návěstidla a další obsah jsou distribuovány jako nezávislé Addony.
 
 <Alert severity="info">
 
-TransitCore zcela odděluje **engine** od **obsahu**. Framework poskytuje simulační systémy, zatímco Addony přidávají vozidla, koleje, návěstidla, stanice, trolejové vedení a další železniční prvky.
+TransitCore zcela odděluje **engine** od **obsahu**. Framework poskytuje různé simulační systémy, zatímco Addony přinášejí vozidla, koleje, návěstidla, stanice a všechny další železniční prvky.
 
 </Alert>
 
 ## Proč TransitCore?
 
-TransitCore je postaven na čtyřech základních principech.
+TransitCore byl vyvíjen na základě čtyř základních principů.
 
 ### Realismus
 
-Cílem TransitCore je co nejvěrněji simulovat skutečné železniční systémy při zachování plné integrace s Minecraftem.
+Cílem TransitCore je co nejvěrněji reprodukovat fungování železniční sítě a přitom zůstat plně integrován v Minecraftu.
 
-Framework podporuje například:
+Framework mimo jiné podporuje:
 
 - Pokročilou simulaci vozidel.
 - Realistické brzdové systémy.
-- Železniční zabezpečovací zařízení.
+- Železniční návěstní systémy.
 - Elektrické systémy.
-- Provoz stanic a cestujících.
-- Synchronizaci pro multiplayer.
-- Provoz vysokorychlostních vlaků.
+- Správu cestujících.
+- Synchronizaci pro více hráčů.
+- Vysokorychlostní železniční tratě.
 
 ### Modularita
 
 Vše v TransitCore je navrženo modulárně.
 
-Samotný framework obsahuje pouze simulační engine.
+Samotný framework obsahuje pouze motory nezbytné pro svou funkčnost.
 
-Vozidla, infrastruktura, zvuky, textury, uživatelské rozhraní i herní rozšíření jsou distribuovány jako samostatné Addony, které lze nezávisle instalovat, aktualizovat nebo odebrat.
+Vozidla, infrastruktura, zvuky, textury, uživatelská rozhraní a rozšíření hratelnosti jsou distribuována jako Addony, které lze instalovat, aktualizovat nebo odebírat nezávisle na sobě.
 
 ### Výkon
 
 TransitCore je navržen tak, aby efektivně zvládal rozsáhlé železniční sítě.
 
-Vykreslování, fyzika, síťová komunikace i simulace jsou optimalizovány tak, aby minimalizovaly zbytečné výpočty při zachování realistického chování.
+Vykreslování, fyzika, síť a simulace jsou optimalizovány tak, aby omezily zbytečné výpočty a zároveň zachovaly realistické chování.
 
 ### Rozšiřitelnost
 
-Všechny funkce frameworku jsou dostupné prostřednictvím **LuaTC**, oficiálního skriptovacího jazyka TransitCore.
+Všechny funkce nabízené TransitCore jsou přístupné přes **LuaTC**, oficiální skriptovací jazyk frameworku.
 
-Vývojáři mohou vytvářet plnohodnotné Addony bez úpravy Java kódu samotného enginu.
+Vývojáři tak mohou vytvářet kompletní Addony, aniž by museli upravovat kód Java v TransitCore.
 
 ## Architektura
 
@@ -74,13 +74,13 @@ TransitCore
 └── Addon Loader
 ```
 
-Každý systém odpovídá za konkrétní část frameworku a komunikuje prostřednictvím stabilního veřejného API.
+Každý systém odpovídá za konkrétní část frameworku a komunikuje s ostatními prostřednictvím stabilních veřejných API.
 
 ## LuaTC
 
 LuaTC je oficiální skriptovací jazyk TransitCore.
 
-Rozšiřuje Lua o API navržené speciálně pro železniční simulaci a umožňuje vývojářům pracovat s frameworkem bez přímého přístupu k interním systémům Minecraftu.
+Na základě Lua je rozšířen o API speciálně navržená pro simulaci železnice. Umožňuje vývojářům interagovat s frameworkem, aniž by museli přímo přistupovat k interním mechanismům Minecraftu.
 
 ```luatc title="Vytvoření vozidla"
 local train = tc.vehicle.create(tc.VehicleType.TRAIN)
@@ -92,33 +92,33 @@ train:setMass(383000)
 
 <Alert severity="success">
 
-Většinu Addonů lze vytvořit kompletně v LuaTC. Java je potřeba pouze při rozšiřování samotného jádra TransitCore.
+Většina Addonů může být vyvinuta kompletně v LuaTC. Java je potřeba pouze pro rozšíření vnitřního fungování TransitCore.
 
 </Alert>
 
 ## Addony
 
-TransitCore využívá plně modulární architekturu Addonů.
+TransitCore se opírá o architekturu plně založenou na Addonech.
 
-Každý Addon se načítá samostatně a komunikuje s frameworkem prostřednictvím LuaTC.
+Každý Addon se načítá nezávisle a komunikuje s frameworkem prostřednictvím LuaTC.
 
-Addony mohou přidávat například:
+Addon může přidat například:
 
 - Vlaky.
 - Metro.
 - Tramvaje.
 - Lanové dráhy.
-- Koleje.
+- Železniční tratě.
 - Návěstidla.
 - Trolejové vedení.
 - Stanice.
 - Uživatelská rozhraní.
 - Zvuky.
-- Herní rozšíření.
+- Rozšíření hratelnosti.
 
-Pokud během načítání Addonu dojde k chybě, TransitCore jej automaticky deaktivuje, aniž by zabránil spuštění frameworku nebo ostatních Addonů.
+Pokud Addon během načítání narazí na chybu, TransitCore jej automaticky zakáže, aniž by zabránil startu frameworku nebo ostatních Addonů.
 
-```text title="Struktura Addonu"
+```text title="Příklad struktury Addonu"
 MyAddon/
 ├── addon.yaml
 ├── scripts/
@@ -130,28 +130,28 @@ MyAddon/
 
 <Alert severity="warning" title="Izolace Addonů">
 
-Chybný Addon nemůže zabránit spuštění TransitCore. Framework automaticky rozpozná chybu, deaktivuje pouze problémový Addon a pokračuje v načítání všech ostatních.
+Vadný Addon nemůže zabránit spuštění TransitCore. Framework automaticky rozpozná chybu, zakáže pouze dotčený Addon a pokračuje v načítání všech ostatních.
 
 </Alert>
 
 ## Dokumentace
 
-Dokumentace je rozdělena do několika částí.
+Dokumentace je rozdělena do několika sekcí.
 
 | Sekce | Popis |
-|--------|-------|
-| Getting Started | Instalace TransitCore a vytvoření prvního Addonu. |
-| LuaTC | Seznámení s oficiálním skriptovacím jazykem frameworku. |
-| Guides | Podrobné návody ke všem hlavním systémům TransitCore. |
-| API Reference | Kompletní reference služeb, tříd, metod a událostí. |
-| Examples | Ukázkové projekty demonstrující doporučené postupy. |
+|---------|-------------|
+| Začínáme | Nainstalovat TransitCore a vytvořit svůj první Addon. |
+| LuaTC | Objevit oficiální skriptovací jazyk frameworku. |
+| Návody | Podrobné tutoriály zabývající se hlavními systémy TransitCore. |
+| Reference API | Kompletní dokumentace služeb, tříd, metod a událostí. |
+| Příklady | Ukázkové projekty ilustrující osvědčené postupy a funkce frameworku. |
 
 ## Open Source
 
-TransitCore je open-source projekt vyvíjený společností **Fire Sparks Studio**.
+TransitCore je open source projekt vyvíjený studiem **Fire Sparks Studio**.
 
-Zdrojový kód, dokumentace i systém pro hlášení chyb jsou veřejně dostupné, takže komunita může navrhovat vylepšení, hlásit chyby a podílet se na vývoji frameworku.
+Zdrojový kód, dokumentace a systém pro sledování problémů jsou veřejně přístupné, aby mohla komunita navrhovat vylepšení, hlásit anomálie a přispívat k vývoji frameworku.
 
 ## Další krok
 
-Pokud s TransitCore začínáte, pokračujte na stránku **Installation**, kde nastavíte své vývojové prostředí a vytvoříte svůj první Addon.
+Pokud TransitCore teprve objevujete, pokračujte na **Instalace**, abyste si připravili vývojové prostředí a vytvořili svůj první Addon.

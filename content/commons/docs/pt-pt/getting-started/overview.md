@@ -1,63 +1,63 @@
 ---
 title: Visão Geral
-description: Descubra o que é o TransitCore, como funciona e os princípios que orientam o seu desenvolvimento.
+description: Descubra o que é o TransitCore, como funciona e os princípios que orientaram o seu design.
 ---
 
 # Visão Geral
 
 Bem-vindo ao **TransitCore**.
 
-O TransitCore é um framework modular de simulação ferroviária para Minecraft, desenvolvido para criar redes ferroviárias realistas através de um poderoso sistema de Addons e da linguagem de scripting **LuaTC**.
+O TransitCore é um framework modular de simulação ferroviária para Minecraft, concebido para criar redes ferroviárias realistas através de um poderoso sistema de Addons e da linguagem de script **LuaTC**.
 
-Ao contrário dos mods ferroviários tradicionais, o TransitCore não inclui diretamente comboios, metros ou infraestruturas. O framework fornece o motor de simulação, enquanto todo o conteúdo é distribuído como Addons independentes.
+Ao contrário dos mods ferroviários tradicionais, o TransitCore não fornece diretamente veículos ou infraestruturas. O framework disponibiliza o motor de simulação, enquanto os comboios, metros, elétricos, vias, sinais e outros conteúdos são distribuídos como Addons independentes.
 
 <Alert severity="info">
 
-O TransitCore separa completamente o **motor** do **conteúdo**. O framework fornece os sistemas de simulação, enquanto os Addons adicionam veículos, vias, sinais, estações, catenárias e qualquer outro elemento ferroviário.
+O TransitCore separa completamente o **motor** do **conteúdo**. O framework fornece os diferentes sistemas de simulação, enquanto os Addons trazem os veículos, as vias, os sinais, as estações e todos os outros elementos ferroviários.
 
 </Alert>
 
 ## Porquê o TransitCore?
 
-O TransitCore foi desenvolvido com base em quatro princípios fundamentais.
+O TransitCore foi desenvolvido em torno de quatro princípios fundamentais.
 
 ### Realismo
 
-O objetivo do TransitCore é reproduzir sistemas ferroviários da forma mais fiel possível, mantendo uma integração perfeita com o Minecraft.
+O objetivo do TransitCore é reproduzir o funcionamento de uma rede ferroviária da forma mais fiel possível, mantendo-se perfeitamente integrado no Minecraft.
 
-O framework suporta:
+O framework suporta nomeadamente:
 
-- Simulação avançada de veículos.
+- Uma simulação avançada dos veículos.
 - Sistemas de travagem realistas.
-- Sinalização ferroviária.
-- Sistemas elétricos.
-- Operação de estações e passageiros.
-- Sincronização multijogador.
-- Operação de comboios de alta velocidade.
+- A sinalização ferroviária.
+- Os sistemas elétricos.
+- A gestão de passageiros.
+- A sincronização multijogador.
+- As linhas ferroviárias de alta velocidade.
 
 ### Modularidade
 
-Tudo no TransitCore foi concebido para ser modular.
+Tudo no TransitCore é concebido de forma modular.
 
-O próprio framework contém apenas o motor de simulação.
+O próprio framework contém apenas os motores necessários ao seu funcionamento.
 
-Veículos, infraestruturas, sons, texturas, interfaces de utilizador e extensões de jogabilidade são distribuídos como Addons independentes, podendo ser instalados, atualizados ou removidos separadamente.
+Os veículos, infraestruturas, sons, texturas, interfaces de utilizador e extensões de gameplay são distribuídos como Addons que podem ser instalados, atualizados ou removidos independentemente uns dos outros.
 
 ### Desempenho
 
-O TransitCore foi desenvolvido para gerir eficientemente grandes redes ferroviárias.
+O TransitCore foi concebido para gerir de forma eficiente redes ferroviárias de grande dimensão.
 
-O rendering, a física, a rede e a simulação são otimizados para reduzir cálculos desnecessários, mantendo um comportamento realista.
+O renderizado, a física, a rede e a simulação são otimizados de forma a limitar os cálculos desnecessários mantendo um comportamento realista.
 
 ### Extensibilidade
 
-Todas as funcionalidades do framework estão disponíveis através do **LuaTC**, a linguagem oficial de scripting do TransitCore.
+Todas as funcionalidades oferecidas pelo TransitCore são acessíveis através de **LuaTC**, a linguagem de script oficial do framework.
 
-Os programadores podem criar Addons completos sem modificar o código Java do motor.
+Os developers podem assim criar Addons completos sem terem de modificar o código Java do TransitCore.
 
 ## Arquitetura
 
-O TransitCore é composto por vários sistemas independentes que trabalham em conjunto.
+O TransitCore é composto por vários sistemas independentes que funcionam em conjunto.
 
 ```text title="Arquitetura do TransitCore"
 TransitCore
@@ -74,13 +74,13 @@ TransitCore
 └── Addon Loader
 ```
 
-Cada sistema é responsável por uma parte específica do framework e comunica através de uma API pública e estável.
+Cada sistema é responsável por uma parte precisa do framework e comunica com os outros através de APIs públicas e estáveis.
 
 ## LuaTC
 
-O LuaTC é a linguagem oficial de scripting do TransitCore.
+O LuaTC é a linguagem de script oficial do TransitCore.
 
-Expande a linguagem Lua com APIs especificamente concebidas para a simulação ferroviária, permitindo aos programadores interagir com o framework sem aceder diretamente aos sistemas internos do Minecraft.
+Baseado em Lua, estende-o com APIs especialmente concebidas para a simulação ferroviária. Permite aos developers interagir com o framework sem terem de aceder diretamente aos mecanismos internos do Minecraft.
 
 ```luatc title="Criar um veículo"
 local train = tc.vehicle.create(tc.VehicleType.TRAIN)
@@ -92,33 +92,33 @@ train:setMass(383000)
 
 <Alert severity="success">
 
-A maioria dos Addons pode ser desenvolvida inteiramente em LuaTC. O Java só é necessário quando se pretende expandir o próprio motor do TransitCore.
+A maioria dos Addons pode ser desenvolvida integralmente em LuaTC. O Java só é necessário para estender o funcionamento interno do TransitCore.
 
 </Alert>
 
-## Addons
+## Os Addons
 
-O TransitCore utiliza uma arquitetura totalmente baseada em Addons.
+O TransitCore baseia-se numa arquitetura totalmente assente em Addons.
 
-Cada Addon é carregado de forma independente e comunica com o framework através do LuaTC.
+Cada Addon é carregado independentemente e comunica com o framework através de LuaTC.
 
-Os Addons podem adicionar:
+Um Addon pode adicionar, por exemplo:
 
 - Comboios.
 - Metros.
 - Elétricos.
 - Funiculares.
-- Vias.
+- Vias ferroviárias.
 - Sinais.
 - Catenárias.
 - Estações.
 - Interfaces de utilizador.
 - Sons.
-- Extensões de jogabilidade.
+- Extensões de gameplay.
 
-Se um Addon encontrar um erro durante o arranque, o TransitCore desativa-o automaticamente sem impedir que o framework ou os restantes Addons continuem a ser carregados.
+Se um Addon encontrar um erro durante o carregamento, o TransitCore desativa-o automaticamente sem impedir o framework ou os outros Addons de arrancar.
 
-```text title="Estrutura de um Addon"
+```text title="Exemplo de estrutura de um Addon"
 MyAddon/
 ├── addon.yaml
 ├── scripts/
@@ -130,28 +130,28 @@ MyAddon/
 
 <Alert severity="warning" title="Isolamento dos Addons">
 
-Um Addon com erros não pode impedir o arranque do TransitCore. O framework deteta automaticamente o erro, desativa apenas o Addon afetado e continua a carregar todos os restantes.
+Um Addon defeituoso não pode impedir o TransitCore de arrancar. O framework deteta automaticamente o erro, desativa apenas o Addon concernente e prossegue o carregamento de todos os outros.
 
 </Alert>
 
-## Documentação
+## A documentação
 
 A documentação está organizada em várias secções.
 
 | Secção | Descrição |
-|--------|-----------|
-| Getting Started | Instalar o TransitCore e criar o primeiro Addon. |
-| LuaTC | Aprender a linguagem oficial de scripting do framework. |
-| Guides | Guias detalhados sobre todos os principais sistemas do TransitCore. |
-| API Reference | Referência completa de serviços, classes, métodos e eventos. |
-| Examples | Projetos de exemplo que demonstram as melhores práticas. |
+|---------|-------------|
+| Começar | Instalar o TransitCore e criar o seu primeiro Addon. |
+| LuaTC | Descobrir a linguagem de script oficial do framework. |
+| Guias | Tutoriais detalhados que cobrem os principais sistemas do TransitCore. |
+| Referência da API | Documentação completa dos serviços, classes, métodos e eventos. |
+| Exemplos | Projetos de exemplo que ilustram as boas práticas e as funcionalidades do framework. |
 
-## Código Aberto
+## Open Source
 
-O TransitCore é um projeto de código aberto desenvolvido pela **Fire Sparks Studio**.
+O TransitCore é um projeto open source desenvolvido pela **Fire Sparks Studio**.
 
-O código-fonte, a documentação e o sistema de gestão de problemas estão disponíveis publicamente, permitindo que a comunidade proponha melhorias, reporte erros e contribua para o desenvolvimento do framework.
+O código fonte, a documentação e o sistema de seguimento de problemas estão acessíveis publicamente de forma a permitir à comunidade propor melhorias, reportar anomalias e contribuir para o desenvolvimento do framework.
 
-## Próximo Passo
+## Próximo passo
 
-Se esta é a sua primeira utilização do TransitCore, continue para **Installation** para configurar o ambiente de desenvolvimento e criar o seu primeiro Addon.
+Se está a descobrir o TransitCore, continue com **Instalação** de forma a preparar o seu ambiente de desenvolvimento e criar o seu primeiro Addon.
