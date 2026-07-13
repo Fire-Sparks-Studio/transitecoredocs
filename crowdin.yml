@@ -1,0 +1,3 @@
+files:
+  - source: content/commons/docs/en-us/**/*.md
+    translation: content/crowdin/wconfirm/%two_letters_code%/%original_file_name%
