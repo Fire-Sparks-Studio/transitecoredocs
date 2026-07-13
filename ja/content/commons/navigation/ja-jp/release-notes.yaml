@@ -1,0 +1,8 @@
+navigation:
+  - heading: Release Notes
+  - title: Alpha
+    path: /release-notes/alpha
+  - title: Beta
+    path: /release-notes/beta
+  - title: Stable
+    path: /release-notes/stable
