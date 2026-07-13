@@ -11,7 +11,7 @@ This file constitutes the manifest of your Addon. It allows TransitCore to ident
 
 <Alert severity="warning">
 
-Le fichier `addon.yaml` est obligatoire. Sans lui, TransitCore ne détectera pas votre Addon.
+The `addon.yaml` file is mandatory. Without it, TransitCore will not detect your Addon.
 
 </Alert>
 
@@ -267,7 +267,7 @@ To ensure the compatibility of your Addon:
 
 <Alert severity="success">
 
-Le manifeste est la première chose que TransitCore lit lorsqu'il charge un Addon. Prenez le temps de le maintenir à jour, car il contient toutes les informations essentielles concernant votre projet.
+The manifest is the first thing TransitCore reads when loading an Addon. Take the time to keep it up to date, as it contains all the essential information about your project.
 
 </Alert>
 
