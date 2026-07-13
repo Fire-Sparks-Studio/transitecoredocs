@@ -25,7 +25,7 @@ contain the mod source code.
 | `CONTRIBUTING.md` | How to contribute to the docs, translations and the mod. |
 
 This repository **does not** contain the mod source. For that, see
-[Fire-Sparks-Studio/transitcore](https://github.com/Fire-Sparks-Studio/transitcore).
+[Fire-Sparks-Studio/transitcore](https://github.com/Le-noirrateur/transitcore).
 
 ---
 
@@ -113,7 +113,7 @@ Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for the full guide. In short:
   <https://crwd.in/transitcore/a602f6b7f433442aba9156c216d3f6062823917>
   and translate online; Crowdin syncs results back into this repository.
 - **Mod contributions** (Java, LuaTC, rendering, physics, …) → head over to
-  [Fire-Sparks-Studio/transitcore](https://github.com/Fire-Sparks-Studio/transitcore).
+  [Fire-Sparks-Studio/transitcore](https://github.com/Le-noirrateur/transitcore).
 
 By participating in this project, you agree to abide by our
 [Code of Conduct](./CODE_OF_CONDUCT.md).
@@ -141,8 +141,8 @@ keeping the documentation free and open.
 ## Links
 
 - **Documentation website:** <https://firesparks.mceteams.com/transitcore/docs>
-- **Mod source code:** [Fire-Sparks-Studio/transitcore](https://github.com/Fire-Sparks-Studio/transitcore)
+- **Mod source code:** [Fire-Sparks-Studio/transitcore](https://github.com/Le-noirrateur/transitcore)
 - **Studio:** [Fire Sparks Studio](https://github.com/Fire-Sparks-Studio)
 - **Crowdin project:** <https://crwd.in/transitcore/a602f6b7f433442aba9156c216d3f6062823917>
 - **Issues (docs):** [open an issue](https://github.com/Fire-Sparks-Studio/transitecoredocs/issues)
-- **Issues (mod):** [open an issue on transitcore](https://github.com/Fire-Sparks-Studio/transitcore/issues)
+- **Issues (mod):** [open an issue on transitcore](https://github.com/Le-noirrateur/transitcore/issues)
