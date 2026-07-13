@@ -4,7 +4,7 @@ First of all, thank you for taking the time to contribute to TransitCore's
 documentation. This document describes the different ways you can help and the
 conventions to follow so that your contribution can be merged quickly.
 
-This repository (`transitecoredocs`) only contains **documentation**. The mod
+This repository (`transitcoredocs`) only contains **documentation**. The mod
 source code lives in a separate repository:
 [Le-noirrateur/transitcore](https://github.com/Le-noirrateur/transitcore).
 
@@ -222,7 +222,7 @@ To keep the docs consistent, please follow these conventions:
    docs(installation): clarify NeoForge version requirement
    ```
 5. Push to your fork and open a Pull Request against the `main` branch of
-   `Fire-Sparks-Studio/transitecoredocs`.
+   `Fire-Sparks-Studio/transitcoredocs`.
 6. Link any related issue in the PR description (`Closes #123`).
 
 Please keep Pull Requests small and focused. Large refactors affecting many

@@ -73,7 +73,7 @@ New languages can be requested through the Crowdin project (see
 ## Repository structure
 
 ```text
-transitecoredocs/
+transitcoredocs/
 ├── content/
 │   └── commons/
 │       ├── docs/
@@ -144,5 +144,5 @@ keeping the documentation free and open.
 - **Mod source code:** [Fire-Sparks-Studio/transitcore](https://github.com/Le-noirrateur/transitcore)
 - **Studio:** [Fire Sparks Studio](https://github.com/Fire-Sparks-Studio)
 - **Crowdin project:** <https://crwd.in/transitcore/a602f6b7f433442aba9156c216d3f6062823917>
-- **Issues (docs):** [open an issue](https://github.com/Fire-Sparks-Studio/transitecoredocs/issues)
+- **Issues (docs):** [open an issue](https://github.com/Fire-Sparks-Studio/transitcoredocs/issues)
 - **Issues (mod):** [open an issue on transitcore](https://github.com/Le-noirrateur/transitcore/issues)
