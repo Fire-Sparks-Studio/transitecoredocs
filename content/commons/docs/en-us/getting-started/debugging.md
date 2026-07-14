@@ -31,7 +31,7 @@ The logs are available in the following folder.
 
 ```text title="Logs folder"
 
-.minecraft/
+.minecraft/Config/TC_Config/
 └── TC_Logs/
 
 ```

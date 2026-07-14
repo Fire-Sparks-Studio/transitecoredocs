@@ -103,7 +103,7 @@ TransitCore records all important information in its logs.
 
 ```text title="Logs folder"
 
-.minecraft/
+.minecraft/Config/TC_Config/
 └── TC_Logs/
 
 ```
