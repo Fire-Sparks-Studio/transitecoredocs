@@ -235,9 +235,12 @@ For example:
 
 ```text title="TransitCore folders"
 .minecraft/
-├── TC_Cache/
-├── TC_Logs/
-└── TC_Config/
+├── mods/
+├── config/
+│   └── TC_Config/
+│       ├── Cache/
+│       ├── Logs/
+└── TC_Addons/
 ```
 
 These folders are managed automatically by the framework.
