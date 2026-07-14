@@ -35,7 +35,7 @@ Variables allow storing information to reuse it later.
 
 ```luatc title="Variables"
 local trainName = "Name"
-local maxSpeed = 320 // Km/h or MPH ( depends of TC's Config )
+local maxSpeed = 320 -- Km/h or MPH ( depends of TC's Config )
 local isElectric = true
 ```
 
@@ -166,7 +166,7 @@ LuaTC allows interacting directly with TransitCore.
 For example, to create a vehicle:
 
 ```luatc title="Create a vehicle"
-local vehicle = tc:getService("vehicle"):Create(tc.VehicleType.TRAIN) // or tc.vehicle:create(tc.VehicleType.TRAIN)
+local vehicle = tc:getService("vehicle"):Create(tc.VehicleType.TRAIN) -- or tc.vehicle:create(tc.VehicleType.TRAIN)
 
 vehicle:setName("TGV")
 vehicle:setMaximumSpeed(320)
