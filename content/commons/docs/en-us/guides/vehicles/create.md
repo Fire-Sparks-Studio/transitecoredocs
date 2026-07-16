@@ -214,6 +214,6 @@ The Node automatically becomes the sound emitter.
 
 ## What's next?
 
-Your first Vehicle is now created.
+Your first Vehicle is now created and registered.
 
-Continue with **Vehicle Nodes** to learn how each Node type works and how to implement custom behaviors.
+Continue with **Vehicle Structure** to learn how to organize your Vehicle project, manage resources, and structure your LuaTC scripts.
